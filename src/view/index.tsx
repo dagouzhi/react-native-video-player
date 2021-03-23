@@ -74,7 +74,7 @@ export const Loading = (props: any) => {
 
 
 //锁定
-export class Lock extends Component {
+export class Lock extends Component<any, any> {
     state = {
         lock: false
     }
@@ -123,7 +123,7 @@ export class Lock extends Component {
 
 //暂停的tips
 export const TipsPaused = (props) => {
-    let timer = ''
+    let timer: any = ''
     const [animater, setAnimater] = React.useState(new Animated.Value(0))
     const [show, setShow] = React.useState(true)
 
@@ -174,7 +174,7 @@ export const TipsPaused = (props) => {
 
 
 //亮度
-export class Brightness extends Component {
+export class Brightness extends Component<any, any> {
     constructor(props) {
         super(props)
         this.state = {
@@ -216,7 +216,7 @@ export class Brightness extends Component {
 
 //音量
 
-export class Volume extends Component {
+export class Volume extends Component<any, any> {
     state = {
         soundWidth: 0.1
     }
@@ -295,13 +295,14 @@ export const Header = (props) => {
 var animationT = 0;
 var animationN = 5;
 var animationM = 2;
-export class AnFastSvg extends Component {
+export class AnFastSvg extends Component<any, any> {
    
     state={
         fV:new Animated.Value(0),
         sV:new Animated.Value(0)
         
     }
+    anmin: number;
    
 
     componentDidMount() {
@@ -364,7 +365,7 @@ export class AnFastSvg extends Component {
 }
 
 
-export class Speed extends Component {
+export class Speed extends Component<any, any> {
     state = {
         allTime: "00:00",//总时长
         nowTime: "00:00",//当前播放时长
@@ -372,6 +373,7 @@ export class Speed extends Component {
         dotWidth: 0
     }
     setNativeProps = (data) => {
+        // @ts-ignore
         this.refs.dotspeed.setNativeProps(data)
     }
 
@@ -409,6 +411,7 @@ export class Speed extends Component {
             this.setState({ dotStart: false })
         }
     }
+    nowTime: number;
 
     render() {
         const { props } = this
@@ -441,7 +444,7 @@ export class Speed extends Component {
 }
 
 /* 拖动进度条展示拖动当前时时间 */
-export class SpeedTipTime extends Component {
+export class SpeedTipTime extends Component<any, any> {
     state = {
         goSpeedTime: "00:00",//想要拖动改变的进度时常 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { Text, StyleSheet, TouchableOpacity, View, Dimensions, Animated, StatusBar, Platform, SafeAreaView } from 'react-native';
-import { SvgVideoUnlock, SvgVideoLocking, SvgVideoLoading, SvgVideoBrightness, SvgVideoNoSound, SvgVideoStop, SvgVideoSound, SvgVideoFastSpeed } from '../src/component/svg';
+import { SvgVideoUnlock, SvgVideoLocking, SvgVideoLoading, SvgVideoBrightness, SvgVideoNoSound, SvgVideoStop, SvgVideoSound, SvgVideoFastSpeed } from '../component/svg';
 import { formatSeconds } from '../utils/formatSeconds';
 const { height, width } = Dimensions.get('screen');
 export const Loading = (props) => {
@@ -226,6 +226,7 @@ export class Speed extends Component {
             dotWidth: 0
         };
         this.setNativeProps = (data) => {
+            // @ts-ignore
             this.refs.dotspeed.setNativeProps(data);
         };
         this.setdotWidth = (dotWidth) => {

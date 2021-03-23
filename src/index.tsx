@@ -49,7 +49,7 @@ import { getMaxdata } from './utils/getMaxdata';
 const { height, width } = Dimensions.get('screen');
 
 
-class VideoPlayer extends React.Component {
+class VideoPlayer extends React.Component<any, any> {
     static defaultProps = {
         autoPlay: true,
         showSmallCont: true,
@@ -190,9 +190,11 @@ class VideoPlayer extends React.Component {
         if (this.adminBrightness) {
             Platform.OS === "android" ?
                 NativeModules.AppBrightness.setAppBrightness(this.adminBrightness) :
+                // @ts-ignore
                 SystemSetting.setBrightnessForce(this.adminBrightness).then((success) => {
                     !success && Alert.alert('没有权限', '您无权限改变屏幕亮度', [
                         { 'text': '好的', style: 'cancel' },
+                        // @ts-ignore
                         { 'text': '打开设置', onPress: () => SystemSetting.grantWriteSettingPermission() }
                     ])
                 });
@@ -511,7 +513,7 @@ class VideoPlayer extends React.Component {
             },
 
             onPanResponderGrant: (evt, gestureState) => {
-
+                // @ts-ignore
                 clearTimeout(this.TimeHideConts)//拖动时禁止隐藏控件
 
                 //初始化 记录滑动的xy值
@@ -534,6 +536,7 @@ class VideoPlayer extends React.Component {
 
                 //获取当前屏幕亮度
                 SystemSetting.getBrightness().then((brightness) => {
+                     // @ts-ignore
                     this.adminBrightness = brightness
                     //安卓不是直接修改系统亮度，这里获取到的是系统亮度，所以安卓需要处理
                     if (this.brightnessData) {
@@ -622,6 +625,7 @@ class VideoPlayer extends React.Component {
                                             SystemSetting.setBrightnessForce(this.brightnessData).then((success) => {
                                                 !success && Alert.alert('没有权限', '您无权限改变屏幕亮度', [
                                                     { 'text': '好的', style: 'cancel' },
+                                                     // @ts-ignore
                                                     { 'text': '打开设置', onPress: () => SystemSetting.grantWriteSettingPermission() }
                                                 ])
                                             });
@@ -649,7 +653,7 @@ class VideoPlayer extends React.Component {
 
                             /**调节进度结束**/
                             this.changeSpeedTip({ opacity: 1, display: null, width: null })
-
+                            // @ts-ignore
                             clearTimeout(this.TimeHideConts)//拖动进度条时禁止隐藏控件
                             this.realMarginLeft = this.speedDataX / 2; //2为快进退的手势速度 必须大于0
                             if (this.realMarginLeft >= width - 200) {
@@ -686,6 +690,7 @@ class VideoPlayer extends React.Component {
                 if (speedB) {
 
                     speedB >= this.state.duration ?
+                        // @ts-ignore
                         this.player.seek(speedB - 2)
                         :
                         this.player.seek(speedB);
@@ -751,6 +756,7 @@ class VideoPlayer extends React.Component {
                     style: { borderColor: this.props.dotBorderColor }
                 })
                 this.changeSpeedTip({ opacity: 1, display: null, width: null })
+                 // @ts-ignore
                 clearTimeout(this.TimeHideConts)//拖动进度条时禁止隐藏控件
 
                 this.ismoveDot = true
@@ -778,6 +784,7 @@ class VideoPlayer extends React.Component {
                     //         goSpeedTime: formatSeconds((this.realMarginLeft) / (this.state.width - 200) * this.state.duration)
                     //     })
 
+                     // @ts-ignore
                     this.SpeedTipTimeRef && this.SpeedTipTimeRef.setgoSpeedTime(formatSeconds((this.realMarginLeft) / (this.state.width - 200) * this.state.duration))
                     this.dotspeed.setdotWidth(evt.nativeEvent.pageX - 100 >= this.state.width - 200 ? this.state.width - 200 : evt.nativeEvent.pageX - 100)
                 }
@@ -829,6 +836,7 @@ class VideoPlayer extends React.Component {
 
     //激活自动隐藏
     activateAutoHide = () => {
+         // @ts-ignore
         this.TimeHideConts = setTimeout(this.fastHideConts, 5000);
     }
 
@@ -908,9 +916,11 @@ class VideoPlayer extends React.Component {
     //显示控件
     showConts = () => {
         try {
+             // @ts-ignore
             clearTimeout(this.TimeHideConts)
             //当提示要vip 暂停播放时 禁止双击暂停播放
             if (!this.state.showOpenVip) {
+                 // @ts-ignore
                 if (this.lastBackPressed && this.lastBackPressed + 300 >= Date.now()) {
                     // clearTimeout(this.Timeout)
                     if (this.LockRef && this.LockRef.state.lock) return//锁定控件时 禁用手势
@@ -919,6 +929,7 @@ class VideoPlayer extends React.Component {
                     this.state.opacity.setValue(1)
                     return
                 } else {
+                     // @ts-ignore
                     this.lastBackPressed = Date.now();
                 }
             }
@@ -1109,6 +1120,7 @@ class VideoPlayer extends React.Component {
                                     onLoad={this.onLoad}
                                     onEnd={this.reVideo}
                                     resizeMode={"contain"}
+                                     // @ts-ignore
                                     onReadyForDisplay={(e) => {
                                         this.props.onReadyForDisplay && this.props.onReadyForDisplay(e)
                                     }}
@@ -1193,6 +1205,7 @@ class VideoPlayer extends React.Component {
                             null}
                         {showOpenVip && this.props.VIPCONTS
                             &&
+                             // @ts-ignore
                             <ShouldPermissionTitle openViptipBOTTOM={bottomContsBottom + 40} />}
                         {//控件隐藏时候，最下面显示的进度
                             this.state.showConts ? null :
@@ -1435,6 +1448,7 @@ export const NgxuSetting = function () {
             SystemSetting.setBrightnessForce(e).then((success) => {
                 !success && Alert.alert('没有权限', '您无权限改变屏幕亮度', [
                     { 'text': '好的', style: 'cancel' },
+                     // @ts-ignore
                     { 'text': '打开设置', onPress: () => SystemSetting.grantWriteSettingPermission() }
                 ])
             });
