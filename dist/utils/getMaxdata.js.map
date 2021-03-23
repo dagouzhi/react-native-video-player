@@ -1,0 +1,1 @@
+{"version":3,"file":"getMaxdata.js","sourceRoot":"","sources":["../../src/utils/getMaxdata.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,UAAU,GAAC,CAAC,CAAM,EAAE,CAAM,EAAC,EAAE;IACtC,IAAG,CAAC,IAAE,CAAC,EAAC;QACL,OAAO,CAAC,CAAA;KACV;IACD,IAAG,CAAC,IAAE,CAAC,EAAC;QACJ,OAAO,CAAC,CAAA;KACX;IACD,OAAO,CAAC,CAAA;AACZ,CAAC,CAAA"}

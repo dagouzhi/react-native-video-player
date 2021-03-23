@@ -1,0 +1,54 @@
+{
+  "name": "@hongtangyun/react-native-video-player",
+  "version": "0.0.1",
+  "description": "A customisable React Native video player for Android and IOS",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "tslint -p ./ -c ./tslint.json",
+    "tsc:src": "rm -rf dist && tsc -p ./src && rsync -rv --exclude=*.ts --exclude=*.tsx src/ dist/",
+    "prepublishOnly": "npm run tsc:src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dagouzhi/react-native-video-player.git",
+    "baseUrl": "https://github.com/dagouzhi/react-native-video-player"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-video",
+    "videoplayer",
+    "video",
+    "player",
+    "gesture",
+    "control",
+    "volume",
+    "brightness",
+    "progress"
+  ],
+  "author": {
+    "name": "dagouzhi",
+    "email": "dagouzhi@qq.com"
+  },
+  "license": "",
+  "homepage": "https://github.com/dagouzhi/react-native-video-player/#readme",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-native": ">=0.60.0-rc.0 <1.0.x",
+    "react-native-linear-gradient": "^2.5.6"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.63.51",
+    "@types/react-native-video": "^5.0.4",
+    "react": "^17.0.2",
+    "react-native": "^0.64.0",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-video": "^5.1.1"
+  },
+  "dependencies": {
+    "react-native-orientation-locker": "^1.1.8",
+    "react-native-svg": "^9.5.1",
+    "react-native-system-setting": "^1.7.2"
+  }
+}

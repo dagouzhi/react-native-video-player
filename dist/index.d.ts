@@ -1,0 +1,44 @@
+import React from 'react';
+declare class VideoPlayer extends React.Component {
+    static defaultProps: {
+        autoPlay: boolean;
+        showSmallCont: boolean;
+        speedColor: string;
+        dotColor: string;
+        dotBorderColor: string;
+        bottomSpeedColor: string;
+        cachColor: string;
+        allSpeedColor: string;
+    };
+    constructor(props: any);
+    componentWillUnmount(): void;
+    _orientationDidChange: (orientation: any) => void;
+    changeAllBox: () => void;
+    changeSmallBox: () => void;
+    setAll: () => void;
+    setSmall: () => void;
+    componentDidMount(): void;
+    animatedonBuffer(event: any): void;
+    animatedDot: (e: any) => void;
+    speedLongTouch: (evt: any) => void;
+    speedLongTouchOut: (evt: any) => void;
+    componentWillMount(): void;
+    changeSpeedTip: (e: any) => void;
+    fastHideConts: () => void;
+    activateAutoHide: () => void;
+    rePlay: (autoPlay?: boolean, admRePlay?: boolean) => void;
+    setPaused: (e: any) => void;
+    reLoad: () => void;
+    showLockAndCont: () => void;
+    showConts: () => void;
+    onLoad: (data: any) => void;
+    reVideo: () => void;
+    spin: () => void;
+    videoError: (e: any) => void;
+    changeWindows: (e: any) => void;
+    btnPasuedfun: () => void;
+    onchangeUrl: () => void;
+    render(): JSX.Element;
+}
+export declare const NgxuSetting: () => void;
+export default VideoPlayer;
