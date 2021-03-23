@@ -1,6 +1,6 @@
 {
   "name": "@hongtangyun/react-native-video-player",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A customisable React Native video player for Android and IOS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,11 @@
   "peerDependencies": {
     "react": "^17.0.2",
     "react-native": ">=0.60.0-rc.0 <1.0.x",
-    "react-native-linear-gradient": "^2.5.6"
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-svg": ">=^9.5.1",
+    "react-native-system-setting": ">=^2.5.6",
+    "react-native-orientation-locker": ">=^1.1.8",
+    "react-native-video": ">=5.1.1"
   },
   "devDependencies": {
     "@types/react-native": "^0.63.51",
