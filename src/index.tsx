@@ -44,6 +44,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Video from 'react-native-video';
 import { formatSeconds } from './utils/formatSeconds';
 import Orientation from 'react-native-orientation-locker';
+import {Modalize} from 'react-native-modalize';
 import { getMaxdata } from './utils/getMaxdata';
 
 const { height, width } = Dimensions.get('screen');
@@ -1047,46 +1048,6 @@ class VideoPlayer extends React.Component<any, any> {
         const speedLoToWidth = stateWidth / this.speedTouchScale
         return (
             <>
-                <Modal visible={this.state.visible || false}>
-                    <SafeAreaView>
-                        <View
-                            style={{
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                height: 50,
-                                backgroundColor: '#eee'
-                            }}
-                        >
-                            <Text>
-                                播放倍数
-                            </Text>
-                        </View>
-                       {
-                           [2.0, 1.5, 1.25, 1.0, 0.5].map((item) => {
-                               return (
-                                <TouchableOpacity
-                                    style={{
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        height: 50,
-                                        backgroundColor: item === this.state.rate ? 'red' : '#eee'
-                                    }} key={item}
-                                    onPress={() => {
-                                        this.setState({
-                                            rate: item,
-                                            visible: false,
-                                        })
-                                    }}
-                                >
-                                    <Text>
-                                    {item}X
-                                    </Text>
-                                </TouchableOpacity>
-                               )
-                           })
-                       }
-                    </SafeAreaView>
-                </Modal>
                 {this.props.statusBar ? (smallP && this.props.statusBar()) : <Header width={stateWidth} />}
                 <View ref={ref => this.videoBox = ref} style={{ backgroundColor: "#000", position: 'relative' }}>
 
@@ -1191,9 +1152,6 @@ class VideoPlayer extends React.Component<any, any> {
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ padding: 8, marginLeft: 1, }}
                                         onPress={() => {
-                                            this.setState({
-                                                visible: true,
-                                            })
                                             this.props.onMoreFun && this.props.onMoreFun()
                                         }}
                                     >
