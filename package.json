@@ -1,6 +1,6 @@
 {
   "name": "@hongtangyun/react-native-video-player",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A customisable React Native video player for Android and IOS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

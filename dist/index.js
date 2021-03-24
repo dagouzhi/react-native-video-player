@@ -1,6 +1,6 @@
 //修复播放不同分辨率视频，不会重新测量分辨率的问题https://github.com/react-native-community/react-native-video/pull/2053
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, Dimensions, StatusBar, Animated, NativeModules, Alert, Easing, PanResponder, Platform, Modal, SafeAreaView, } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Dimensions, StatusBar, Animated, NativeModules, Alert, Easing, PanResponder, Platform, } from 'react-native';
 import { Loading, TipsPaused, Brightness, Volume, BottomSpeed, Speed, Header, SpeedTipTime, Lock, AnFastSvg } from './view/index';
 import { SvgVideoNextBtn, SvgVideoSetting, SvgVideoStop, SvgVideoPlay, SvgVideoAllBox, SvgVideoSmallBox, SvgVideoBack, SvgVideoScang } from './component/svg';
 import SystemSetting from 'react-native-system-setting';
@@ -821,37 +821,12 @@ class VideoPlayer extends React.Component {
         const preShowSmallCont = smallP ? (this.props.showSmallCont ? true : false) : true;
         const speedLoToWidth = stateWidth / this.speedTouchScale;
         return (React.createElement(React.Fragment, null,
-            React.createElement(Modal, { visible: this.state.visible || false },
-                React.createElement(SafeAreaView, null,
-                    React.createElement(View, { style: {
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: 50,
-                            backgroundColor: '#eee'
-                        } },
-                        React.createElement(Text, null, "\u64AD\u653E\u500D\u6570")),
-                    [2.0, 1.5, 1.25, 1.0, 0.5].map((item) => {
-                        return (React.createElement(TouchableOpacity, { style: {
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                height: 50,
-                                backgroundColor: item === this.state.rate ? 'red' : '#eee'
-                            }, key: item, onPress: () => {
-                                this.setState({
-                                    rate: item,
-                                    visible: false,
-                                });
-                            } },
-                            React.createElement(Text, null,
-                                item,
-                                "X")));
-                    }))),
             this.props.statusBar ? (smallP && this.props.statusBar()) : React.createElement(Header, { width: stateWidth }),
             React.createElement(View, { ref: ref => this.videoBox = ref, style: { backgroundColor: "#000", position: 'relative' } },
                 React.createElement(View, { style: {} },
                     React.createElement(View, Object.assign({}, this._panResponder.panHandlers, { style: { height: stateHeight, width: stateWidth, }, activeOpacity: 1 }),
                         React.createElement(TouchableOpacity, { activeOpacity: 1, onPress: this.showConts, onLongPress: this.speedLongTouch, onPressOut: this.speedLongTouchOut, style: { overflow: "hidden" } },
-                            React.createElement(Video, Object.assign({ key: this.url, rate: this.state.rate || videoRate, source: { uri: this.props.url }, ref: (ref) => { this.player = ref; }, continuous: this.props.continuous ? true : false }, propsObj, { repeat: this.props.repeat ? this.props.repeat : false, onSeek: (e) => {
+                            React.createElement(Video, Object.assign({ key: this.url, rate: this.props.videoRate || videoRate, source: { uri: this.props.url }, ref: (ref) => { this.player = ref; }, continuous: this.props.continuous ? true : false }, propsObj, { repeat: this.props.repeat ? this.props.repeat : false, onSeek: (e) => {
                                     this.props.onSeek && this.props.onSeek(e);
                                     this.setState({ isEnd: false });
                                 }, posterResizeMode: "cover", playWhenInactive: true, paused: this.adminPaused ? this.state.paused : (this.props.autoPlay ? false : true), onLoad: this.onLoad, onEnd: this.reVideo, resizeMode: "contain", 
@@ -885,9 +860,6 @@ class VideoPlayer extends React.Component {
                             React.createElement(View, { style: { position: "absolute", top: topContsTop, right: smallP ? 5 : this.props.continuous ? 45 : 5, flexWrap: "nowrap", flexDirection: "row", zIndex: 10, } },
                                 React.createElement(TouchableOpacity, { style: { padding: 8 }, onPress: this.props.onStore && this.props.onStore }, this.props.storeComponent ? this.props.storeComponent() : React.createElement(SvgVideoScang, { height: "20", width: "20" })),
                                 React.createElement(TouchableOpacity, { style: { padding: 8, marginLeft: 1, }, onPress: () => {
-                                        this.setState({
-                                            visible: true,
-                                        });
                                         this.props.onMoreFun && this.props.onMoreFun();
                                     } }, this.props.moreSetting ? this.props.moreSetting() : React.createElement(SvgVideoSetting, { height: "20", width: "20" }))))
                         :

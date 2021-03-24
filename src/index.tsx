@@ -1065,7 +1065,7 @@ class VideoPlayer extends React.Component<any, any> {
                             >
                                 <Video
                                     key={this.url}
-                                    rate={this.state.rate || videoRate}
+                                    rate={this.props.videoRate || videoRate}
                                     source={{ uri: this.props.url }}
                                     ref={(ref) => { this.player = ref }}
                                     continuous={this.props.continuous ? true : false}//是否是连续剧，用来全屏展示选集，下一集按钮    重新加载Video标签，防止出现上个视频和下个视频分辨率不切换的问题　
